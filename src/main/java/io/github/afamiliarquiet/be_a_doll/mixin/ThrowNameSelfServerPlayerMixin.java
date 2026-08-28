@@ -4,6 +4,7 @@ import com.mojang.authlib.GameProfile;
 import io.github.afamiliarquiet.be_a_doll.BeAMaid;
 import io.github.afamiliarquiet.be_a_doll.diary.BeALibrarian;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -22,8 +23,8 @@ public abstract class ThrowNameSelfServerPlayerMixin extends Player {
 		super(world, profile);
 	}
 
-	@Inject(method = "drop(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;", at = @At("HEAD"), cancellable = true)
-	private void hehe(ItemStack itemStack, boolean randomly, boolean thrownFromHand, CallbackInfoReturnable<ItemEntity> cir) {
+	@Inject(method = "drop(Lnet/minecraft/world/item/ItemStack;ZLnet/minecraft/util/Prediction;)Lnet/minecraft/world/entity/item/ItemEntity;", at = @At("HEAD"), cancellable = true)
+	private void hehe(ItemStack itemStack, boolean thrownFromHand, Prediction prediction, CallbackInfoReturnable<ItemEntity> cir) {
 		// if a doll looks straight up and throws a name tag, they can write on their own tag!
 		if (this.getXRot() <= -88.5f && itemStack.is(Items.NAME_TAG) && BeAMaid.isDoll(this)) {
 			Component text = itemStack.get(DataComponents.CUSTOM_NAME);

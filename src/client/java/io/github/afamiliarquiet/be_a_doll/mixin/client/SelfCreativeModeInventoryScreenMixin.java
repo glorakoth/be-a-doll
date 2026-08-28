@@ -1,5 +1,6 @@
 package io.github.afamiliarquiet.be_a_doll.mixin.client;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import io.github.afamiliarquiet.be_a_doll.BeASelf;
 import io.github.afamiliarquiet.be_a_doll.letters.C2SCreativeEssenceAlterationLetter;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -9,7 +10,6 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -32,10 +32,10 @@ public abstract class SelfCreativeModeInventoryScreenMixin extends AbstractConta
 			ItemStack cursorStack = this.menu.getCarried();
 			ItemStack clickProcessedStack = null;
 
-			if (event.button() == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
+			if (event.button() == InputConstants.MOUSE_BUTTON_LEFT) {
 				ClientPlayNetworking.send(new C2SCreativeEssenceAlterationLetter(true, cursorStack));
 				clickProcessedStack = BeASelf.clickSelf(cursorStack, this.minecraft.player, true);
-			} else if (event.button() == GLFW.GLFW_MOUSE_BUTTON_RIGHT) {
+			} else if (event.button() == InputConstants.MOUSE_BUTTON_RIGHT) {
 				ClientPlayNetworking.send(new C2SCreativeEssenceAlterationLetter(false, cursorStack));
 				clickProcessedStack = BeASelf.clickSelf(cursorStack, this.minecraft.player, false);
 			}
