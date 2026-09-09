@@ -102,6 +102,11 @@ public class BeALibrarian {
 		return BeAMaid.isDoll(supposedPlayer) ? inspectDollMaterial(supposedPlayer) : BeADoll.Variant.REPRESSED;
 	}
 
+	// ahem. third method doing the same thing....... curious. this is just for neo i guess 'cause on neodeath neither of the others are ideal
+	public static @Nullable BeADoll.Variant inspectFallenBody(@NotNull Player body) {
+		return body.getExistingDataOrNull(DOLL_VARIANT);
+	}
+
 	// yeah we're just washing off the experimental api smell here
 	public static void reshapeDoll(@NotNull Player doll, @NotNull BeADoll.Variant variant) {
 //		doll.setAttached(DOLL_VARIANT, variant);

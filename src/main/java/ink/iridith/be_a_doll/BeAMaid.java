@@ -44,7 +44,10 @@ public class BeAMaid {
 	public static void reanimation(PlayerEvent.PlayerRespawnEvent event) {
 		// in theory if doll type is copied on death this is enough for it to.. redo attributes? maybe?
 		// if not then things get messier
-		setDoll(event.getEntity(), BeALibrarian.inspectDollMaterial(event.getEntity()));
+		BeADoll.Variant variant = BeALibrarian.inspectFallenBody(event.getEntity());
+		if (variant != null) {
+			setDoll(event.getEntity(), variant);
+		}
 	}
 
 	public static boolean isDoll(@Nullable Player player) {
