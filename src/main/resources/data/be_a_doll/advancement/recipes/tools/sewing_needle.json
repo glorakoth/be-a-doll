@@ -13,7 +13,7 @@
 		},
 		"has_the_recipe": {
 			"conditions": {
-				"recipe": "be_a_doll:sewing_needle"
+				"recipes": "be_a_doll:sewing_needle"
 			},
 			"trigger": "minecraft:recipe_unlocked"
 		}
