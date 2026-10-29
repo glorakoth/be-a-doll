@@ -22,7 +22,7 @@ public class DollsNeedNoAirInGameHudMixin {
 		return be_a_doll$secureBankDepositBox ? instance.getMaxAir() : original.call(instance);
 	}
 
-	@ModifyExpressionValue(method = "renderStatusBars", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;isSubmergedIn(Lnet/minecraft/registry/tag/TagKey;)Z"))
+	@ModifyExpressionValue(method = "renderStatusBars", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;isSubmergedIn(Lnet/minecraft/registry/tag/TagKey;)Z", require = 0))
 	private boolean letsSupposeThatIAmADollAndYouAreAWaterAndYouWantToKillMe(boolean original) {
 		return original && !be_a_doll$secureBankDepositBox; // i would simply dodge. or maybe not, backporting has made this less robust
 	}
